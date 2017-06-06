@@ -14,14 +14,9 @@ class App extends Component {
     };
   }
 
-  onToggle(id) {
-    const todoListUpdated = this.state.todoList.map(todo => {
-      if (todo.id == id)
-        todo.isComplete = !todo.isComplete;
-      return todo;
-    });
-
-    this.setState({todoList : todoListUpdated});
+  onToggle(todo) {
+    todo.isComplete = !todo.isComplete;
+    this.setState({todoList : this.state.todoList});
   }
 
   render(){
@@ -36,7 +31,7 @@ class App extends Component {
     </fieldset>
     <ul>
       {this.state.todoList.map(todo => {
-        return <Todo key={todo.id} {...todo} toggle={this.onToggle.bind(this, todo.id)} />
+        return <Todo key={todo.id} {...todo} toggle={this.onToggle.bind(this, todo)} />
       })}
     </ul>
     </div>
